@@ -1,0 +1,30 @@
+<mat-grid-list [cols]="1" rowHeight="110px">
+    <div class="alert alert-danger {{this.authAdvisor}}" role="alert">
+        Clave o usuario incorrectos, por favor volver a intentar.
+    </div>
+    <mat-grid-tile>
+        <h1>
+            Inicio de sesión
+        </h1>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>
+            <img height="70vh" src='https://www.bancoestado.cl/imagenes/_img/logo-banco-estado_fb.png' alt="Inicio de sesión Banco Estado"/>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>  
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Rut</mat-label>
+              <input value="{{formatedRut}}" (input)="formater(username.value)" matInput placeholder="Ej: 17.402.744-7" required #username>
+            </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Clave</mat-label>
+            <input type="password" formControlName="password" matInput required #password>
+          </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <button (click)="login(username.value, password.value)" mat-flat-button color="warn">Ingresar</button>
+    </mat-grid-tile>
+  </mat-grid-list>

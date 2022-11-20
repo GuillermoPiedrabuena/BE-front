@@ -1,0 +1,32 @@
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+  }
+  th[colspan="6"] {
+    text-align: center;
+}
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    font-size: .7rem;
+  }
+th{
+  border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    font-size: .9rem;
+}
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .mat-slider {
+    width: 80%;
+  }
+  
+  .ng-tns-c39-7{
+    width: 90%;
+  }

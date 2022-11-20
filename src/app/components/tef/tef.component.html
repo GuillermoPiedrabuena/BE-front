@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+        <h3>
+            Crear Destinatario
+        </h3>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{rutType}}</mat-label>
+            <input value="{{formatedRut}}" (input)="formater(rut.value)" matInput placeholder="Ej: 17.402.744-7" required #rut>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nombre completo</mat-label>
+            <input matInput required #fullName>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input matInput required #email>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Teléfono</mat-label>
+            <input matInput required placeholder="Ej: +56994383730" #phone>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Cuenta</mat-label>
+            <input matInput required #account>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Destino</mat-label>
+            <mat-select [(value)]="SelectselectedItm">
+            <mat-option *ngFor="let bank of banks" [value]="bank.nombre">
+                {{bank.nombre}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <button (click)="register(rut.value, fullName.value, email.value, account.value, this.SelectselectedItm)" mat-flat-button color="warn">Registrar</button>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <h3>
+            Transferencias realizadas
+         </h3>
+         <mat-form-field class="example-full-width" appearance="fill">
+       
+            <mat-label>
+                <i class="fa fa-filter"></i>
+            </mat-label>
+            <input matInput (input)="filter($event)">
+        </mat-form-field>
+    
+        <table class="mat-elevation-z8">
+            <tr>
+                <th>Rut</th>
+                <th>Nombre completo</th>
+                <th>Monto</th>
+                <th>Cuenta</th>
+                <th>Destino</th>
+            </tr>
+              <tr *ngFor="let tef of filteredTefs" class="{{tef.fraud}}">
+                <td>{{[(tef.Rut)]}}</td>
+                <td>{{[(tef.Nombre)]}}</td>
+                <td>{{[(tef.Monto.toLocaleString("es-CL", {style:"currency", currency:"CLP"}))]}}</td>
+                <td>{{[(tef.Cuenta)]}}</td>
+                <td>{{[(tef.Destino)]}}</td>
+              </tr>
+        </table>
+      </div>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+        <h3>
+            Nueva transferencia
+         </h3>
+         <mat-form-field appearance="fill">
+            <mat-label>Destino</mat-label>
+            <mat-select #select>
+            <mat-option *ngFor="let destination of destinations" [value]="destination.Nombre">
+                {{[(destination['Nombre'])]}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <h4>{{amount}}</h4>
+        <mat-slider min="0" max="1000000" step="10000" (input)="mountUpdate($event)">
+        <input matSliderThumb>
+        </mat-slider>
+        <br/>
+        <button (click)="transfer$$$(select.value)" mat-flat-button color="warn">Transferir</button>
+      </div>
+    </div>
+  </div>
+
+  
